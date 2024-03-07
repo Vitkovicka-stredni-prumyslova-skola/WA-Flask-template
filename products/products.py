@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from API.api import GetAllProducts, GetSingleProducts
+from API.api import GetAllProducts, GetSingleProducts, GetCategory
 
 products_bp = Blueprint('products_bp', __name__,
     template_folder='templates',
@@ -23,4 +23,7 @@ def detailOfProduct(id):
 
 @products_bp.route('/products/add')
 def addProduct():
-    return render_template('products/new-product.html')    
+    
+    result = GetCategory()
+
+    return render_template('products/new-product.html', category = result)    
